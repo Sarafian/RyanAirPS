@@ -1,4 +1,7 @@
-﻿function Get-RyanAirSimpleRoundTrip{
+﻿$here = Split-Path -Parent $MyInvocation.MyCommand.Path
+. "$here\Get-RyanAirAvailability.ps1"
+
+function Get-RyanAirRoundTrip{
     param(
         [Parameter(Mandatory=$true)]
         [string] $Origin,
