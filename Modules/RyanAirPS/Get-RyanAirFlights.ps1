@@ -25,19 +25,19 @@
 
     .EXAMPLE
         $date=Get-Date
-        Get-RyanAirAvailability -Origin BRU -Destination SXF -DateOut $date
+        Get-RyanAirFlights -Origin BRU -Destination SXF -DateOut $date
 
     .EXAMPLE
-        $date=Get-Date
+        $date=Get-RyanAirFlights
         Get-RyanAirAvailability -Origin BRU -Destination SXF -DateOut $date -FlexDaysOut 1
 
     .EXAMPLE
         $date=Get-Date
-        Get-RyanAirAvailability -Origin BRU -Destination SXF -DateOut $date -DateIn ($date.AddDays(2))
+        Get-RyanAirFlights -Origin BRU -Destination SXF -DateOut $date -DateIn ($date.AddDays(2))
 
     .EXAMPLE
         $date=Get-Date
-        Get-RyanAirAvailability -Origin BRU -Destination SXF -DateOut $date -FlexDaysOut 1 -DateIn ($date.AddDays(2)) -FlexDaysIn 1
+        Get-RyanAirFlights -Origin BRU -Destination SXF -DateOut $date -FlexDaysOut 1 -DateIn ($date.AddDays(2)) -FlexDaysIn 1
 
     .INPUTS
         The IATA code of origin airport
@@ -46,7 +46,7 @@
         The available flights
 
 #>
-function Get-RyanAirFlights.ps1{
+function Get-RyanAirFlights{
     [CmdletBinding()]
     [OutputType([PSObject[]])]
     param(
