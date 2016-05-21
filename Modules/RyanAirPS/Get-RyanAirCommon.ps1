@@ -51,7 +51,6 @@ function Get-RyanAirCommon{
         Write-Verbose "ryanAirApi=$ryanAirApi"
         $json=Invoke-RestMethod -Uri "$ryanAirApi" -Method Get
 
-        $items=@()
         switch ($Type) 
         { 
             "Countries" {
@@ -61,7 +60,7 @@ function Get-RyanAirCommon{
                     $countryHash["Code"]=$countryJson.code
                     $countryHash["Name"]=$countryJson.name
                     $countryHash["Currency"]=$countryJson.currency
-                    $items+=New-Object PSObject –Prop $countryHash
+                    New-Object PSObject –Prop $countryHash
                 }
             } 
             "Cities" {
@@ -71,7 +70,7 @@ function Get-RyanAirCommon{
                     $cityHash["Code"]=$cityJson.code
                     $cityHash["Name"]=$cityJson.name
                     $cityHash["CountryCode"]=$cityJson.countryCode
-                    $items+=New-Object PSObject –Prop $cityHash
+                    New-Object PSObject –Prop $cityHash
                 }
             } 
             "Airports" {
@@ -83,12 +82,10 @@ function Get-RyanAirCommon{
                     $airportHash["Base"]=[boolean]$airportJson.base
                     $airportHash["CountryCode"]=$airportJson.countryCode
                     $airportHash["CityCode"]=$airportJson.cityCode
-                    $items+=New-Object PSObject –Prop $airportHash
+                    New-Object PSObject –Prop $airportHash
                 }
             } 
         }    
-
-        $items
     }
 
     End {

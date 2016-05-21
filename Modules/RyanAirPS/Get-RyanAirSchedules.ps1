@@ -26,6 +26,9 @@
     .EXAMPLE 
         @("BRU","ATH") | Get-RyanAirSchedules -Destination SXF
 
+    .EXAMPLE 
+        Get-RyanAirSchedules -Origin BRU
+
     .INPUTS
         The IATA code of origin airport
 
@@ -57,7 +60,7 @@ function Get-RyanAirSchedules{
                 $ryanAirApi="https://api.ryanair.com/timetable/3/schedules/$origin/periods"
             }
             Write-Debug $ryanAirApi
-            $json=Invoke-RestMethod -Uri "$ryanAirApi" -Method Get 
+            $json=Invoke-RestMethod -Uri "$ryanAirApi" -Method Get
             Write-Debug $json
             $schedules=@()
             $hash=@{}
@@ -69,8 +72,7 @@ function Get-RyanAirSchedules{
                 $hash["MonthsFromToday"]=$json.monthsFromToday
                 $hash["FirstFlightDate"]=Get-Date $json.firstFlightDate
                 $hash["LastFlightDate"]=Get-Date $json.lastFlightDate
-                $schedule=New-Object PSObject –Prop $hash
-                return $schedule
+                New-Object PSObject –Prop $hash
             }
             else
             {
@@ -83,10 +85,8 @@ function Get-RyanAirSchedules{
                     $hash["MonthsFromToday"]=$scheduleJson.monthsFromToday
                     $hash["FirstFlightDate"]=Get-Date $scheduleJson.firstFlightDate
                     $hash["LastFlightDate"]=Get-Date $scheduleJson.lastFlightDate
-                    $schedule=New-Object PSObject –Prop $hash
-                    $schedules+=$schedule
+                    New-Object PSObject –Prop $hash
                 }
-                return $schedules
             }
         }
         catch
