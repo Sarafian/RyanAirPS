@@ -1,8 +1,7 @@
 $names=@(
-    "Get-RyanAirAvailability"
+    "Get-RyanAirFlights"
     "Get-RyanAirCommon"
-    "Get-RyanAirSchedulesPeriod"
-    "Get-RyanAirRoundTrip"
+    "Get-RyanAirSchedules"
 )
 
 $names | ForEach-Object {. $PSScriptRoot\$_.ps1 }
