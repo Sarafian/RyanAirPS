@@ -1,7 +1,5 @@
-**20160518**
-Initial commit with the following cmdlets (No `Get-Help` support yet)
+**20160611**
 
-- Get-RyanAirAvailability
 - Get-RyanAirCommon
-- Get-RyanAirSchedulesPeriod
-- Get-RyanAirSimpleRoundTrip
+- Get-RyanAirSchedules
+- Get-RyanAirFlights
